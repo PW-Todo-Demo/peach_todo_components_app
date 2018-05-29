@@ -12,6 +12,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/mergeMap';
 import {SearchComponent} from 'ng-beyond';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-todo-list',
@@ -34,6 +35,12 @@ export class TodoListComponent implements OnInit {
   public userInfo: object;
   public percentComplete = 0;
   @ViewChild('search') search: SearchComponent;
+  public listLocations = '';
+  public listLocations2 = '';
+  public filterLocations;
+  public filterLocations2;
+  public filterDateFrom;
+  public filterDateTo;
 
   constructor(errorHandler: ErrorHandler, initService: InitService, router: Router, tasksService: TasksService) {
 
@@ -56,6 +63,18 @@ export class TodoListComponent implements OnInit {
     this.tasks = [];
     this.userInfo = {};
 
+  }
+
+  locationChange(locations) {
+    this.listLocations = _.map(locations, 'name').toString();
+  }
+
+  locationChange2(locations) {
+    this.listLocations2 = _.map(locations, 'name').toString();
+  }
+
+  parseDate(date) {
+    return moment(date).format('DD-MM-Y');
   }
 
   public ngOnInit(): void {

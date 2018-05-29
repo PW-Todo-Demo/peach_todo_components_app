@@ -99,7 +99,10 @@ export class InitService {
             .mergeMap((response) => {
 
               if (response.count === 0) {
-                return this.taskSchedulesService.save(OVERDUE_TASKS_TASK_SCHEDULE);
+                console.log("Before post");
+                let out = this.taskSchedulesService.save(OVERDUE_TASKS_TASK_SCHEDULE);
+                console.log("After post");
+                return out;
               }
 
               return Observable.of(true);

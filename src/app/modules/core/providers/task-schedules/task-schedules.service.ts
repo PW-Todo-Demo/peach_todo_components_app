@@ -20,7 +20,10 @@ export class TaskSchedulesService {
   }
 
   public save(data: any = {}): Observable<any> {
-    return this.resource.save(data);
+    console.log('Before save');
+    let out = this.resource.save(data);
+    console.log('After save');
+    return out;
   }
 
 }

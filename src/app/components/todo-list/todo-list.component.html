@@ -20,8 +20,46 @@
     {{ info.message }}
   </beyond-message>
 
+  <beyond-card
+    title="Filters">
+    <div fxFlex="100%" fxLayout="row" fxLayoutGap="20px">
+      <beyond-location-autocomplete
+        fxLayout="row wrap"
+        fxLayoutAlign="start start"
+        fxFlex="50%"
+        fxFlex.xs="100%"
+        [selectedLocations]="filterLocations"
+        (change)="locationChange($event)"
+        (ready)="locationChange($event)"
+      ></beyond-location-autocomplete>
+      <beyond-date-range
+        fxLayout="row wrap"
+        fxLayoutAlign="start end"
+        fxFlex="50%"
+        fxFlex.xs="100%"
+        [from]="filterDateFrom"
+        [to]="filterDateTo"
+        (change)="filterDateFrom = $event.from; filterDateTo = $event.to;"
+      ></beyond-date-range>
+    </div>
+    <p>Selected a date range of {{ parseDate(filterDateFrom) }} to {{ parseDate(filterDateTo) }}
+      for locations: {{ listLocations }}</p>
+    <div fxFlex="100%" fxLayout="row" fxLayoutGap="20px">
+      <beyond-location-autocomplete
+        fxLayout="row wrap"
+        fxLayoutAlign="start start"
+        fxFlex="50%"
+        fxFlex.xs="100%"
+        [selectedLocations]="filterLocations2"
+        [allowNoLocation]="true"
+        (change)="locationChange2($event)"
+        (ready)="locationChange2($event)"
+      ></beyond-location-autocomplete>
+    </div>
+    <p>Selected locations: {{ listLocations2 }}</p>
+  </beyond-card>
+
     <beyond-card
-      *ngIf="tasks.length > 0"
       title="Tasks"
       fxLayout="column"
       fxLayoutGap="20px">
