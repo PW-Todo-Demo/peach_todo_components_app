@@ -1,0 +1,10 @@
+{
+  "key": "todo_components_app",
+  "framework": {
+    "angular5": {
+      "module": "todoAppNg5",
+      "root_selector": "todo-app-ng5",
+      "version": "5.0.0"
+    }
+  }
+}
